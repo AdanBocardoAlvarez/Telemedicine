@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block importCssAndOtherLinks %}
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/doctorsPortal.css') }}">
+{% endblock %}
+
+{% block main %}
+	<header id="TableHeader">	
+		<br>
+		<br>
+		<h1><span class="text-info">Patient Portal</span></h1>
+		<br>
+		<table class="container" cellspacing="0">
+			<div class="tbl-header">
+				<thead>
+					<tr>
+						<th><h1>Patient Name</h1></th>
+						<th><h1>Symptoms</h1></th>
+						<th><h1>AI Diagnosis</h1></th>
+						<th><h1>Apt. Date</h1></th>
+						<th><h1 href = "localhost:3000">Estimated Severity of Diagnosis</h1></th>
+					</tr>
+				</thead>
+			</div>
+			<div class="tbl-content">
+				<tbody>
+					{% for task in tasks %}
+					<tr>
+					  <td class="uniqueLink" onclick="window.location='/chatDoctor/{{ task.Name }}';"><b><a>{{ task.Name }}</a></b></td>
+                      <td class="uniqueLink" onclick="window.location='{{ task.SymptomsLink }}';"><a>{{ task.Symptoms }}</a></td> 
+                      <td class="uniqueLink" onclick="window.location='{{ task.DiagnosisLink }}';"><a>{{ task.Diagnosis }}</a></td>
+                      <td>{{ task.Date }}</td>
+                      <td class="taskLink" onclick="window.location='{{ task.Link }}';"><a>{{ task.Link }}</a></td>
+                	</tr>
+                	{% endfor %}
+				</tbody>
+			</div>
+		</table>
+	</header>
+	<script src="../speech_synthesis.js"></script>
+{% endblock %}

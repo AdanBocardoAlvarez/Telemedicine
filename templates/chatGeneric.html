@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<title>HackForAfrica</title>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/doctorsPortal.css') }}">
+	</head>
+	<body>
+
+	<header id="TableHeader">
+		<br>
+		<h1><span class="blue"></span>Message<span class="blue"></span> <span class="white">Patients</pan></h1>
+		<table class="container">
+			<div class="tbl-header">
+				<thead>
+					<tr>
+						<th><h1>Patient Name</h1></th>
+						<th><h1>Last Message</h1></th>
+					</tr>
+				</thead>
+			</div>
+			<div class="tbl-content">
+				<tbody>
+					{% for task in tasks %}
+					<tr>
+					  <td onclick="window.location='/chatDoctor/{{ task.Name }}';">{{ task.Name }}</td>
+                      <td onclick="window.location='/chatDoctor/{{ task.Name }}';">{{ task.Question }}</td>
+                	</tr>
+                	{% endfor %}
+				</tbody>
+			</div>
+		</table>
+
+	</header>
+	<script src="../speech_synthesis.js"></script>
+	</body>
+</html>
